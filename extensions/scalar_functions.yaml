@@ -76,16 +76,16 @@ scalar_functions:
     <<: *BinaryScalarNumericArgs
     return: K
 
-  - info: *add
-    <<: *BinaryDecimalNumericArgs
-    return: |-
-      init_scale = max(S1,S2)
-      init_prec = init_scale + max(P1 - S1, P2-S2) + 1
-      min_scale = min(init_scale, 6)
-      delta = init_prec - 38
-      prec = min(init_prec,38)
-      scale = init_prec > 38 ? scale - init_prec + 38 : min_scale
-      DECIMAL<prec, scale>
+  # - info: *add
+  #   <<: *BinaryDecimalNumericArgs
+  #   return: |-
+  #     init_scale = max(S1,S2)
+  #     init_prec = init_scale + max(P1 - S1, P2-S2) + 1
+  #     min_scale = min(init_scale, 6)
+  #     delta = init_prec - 38
+  #     prec = min(init_prec,38)
+  #     scale = init_prec > 38 ? scale - init_prec + 38 : min_scale
+  #     DECIMAL<prec, scale>
 
   - info:
       name: "+"
@@ -103,64 +103,64 @@ scalar_functions:
       description: "Subtract one operand from another."
     <<: *BinaryScalarNumericArgs
     return: K
-  - info: *minus
-    <<: *BinaryDecimalNumericArgs
-    return: |-
-      init_scale = max(S1,S2)
-      init_prec = init_scale + max(P1 - S1, P2-S2) + 1
-      min_scale = min(init_scale, 6)
-      delta = init_prec - 38
-      prec = min(init_prec,38)
-      scale = init_prec > 38 ? scale - init_prec + 38 : min_scale
-      DECIMAL<prec, scale>
+  # - info: *minus
+  #   <<: *BinaryDecimalNumericArgs
+  #   return: |-
+  #     init_scale = max(S1,S2)
+  #     init_prec = init_scale + max(P1 - S1, P2-S2) + 1
+  #     min_scale = min(init_scale, 6)
+  #     delta = init_prec - 38
+  #     prec = min(init_prec,38)
+  #     scale = init_prec > 38 ? scale - init_prec + 38 : min_scale
+  #     DECIMAL<prec, scale>
 
   - info: &mulitply
       name: "*"
       description: Multiply two numeric values.
     <<: *BinaryScalarNumericArgs
     return: K
-  - info: *mulitply
-    <<: *BinaryDecimalNumericArgs
-    return: |-
-      init_scale = S1 + S2
-      init_prec = P1 + P2 + 1
-      min_scale = min(init_scale, 6)
-      delta = init_prec - 38
-      prec = min(init_prec,38)
-      scale = init_prec > 38 ? scale - init_prec + 38 : min_scale
-      DECIMAL<prec, scale>
+  # - info: *mulitply
+  #   <<: *BinaryDecimalNumericArgs
+  #   return: |-
+  #     init_scale = S1 + S2
+  #     init_prec = P1 + P2 + 1
+  #     min_scale = min(init_scale, 6)
+  #     delta = init_prec - 38
+  #     prec = min(init_prec,38)
+  #     scale = init_prec > 38 ? scale - init_prec + 38 : min_scale
+  #     DECIMAL<prec, scale>
 
   - info: &divide
       name: "/"
       description: "Divide two numeric values."
     <<: *BinaryScalarNumericArgs
     return: K
-  - info: *divide
-    <<: *BinaryDecimalNumericArgs
-    return: |-
-      init_scale = max(6, S1 + P2 + 1)
-      init_prec = P1 - S1 + P2 + init_scale
-      min_scale = min(init_scale, 6)
-      delta = init_prec - 38
-      prec = min(init_prec,38)
-      scale = init_prec > 38 ? scale - init_prec + 38 : min_scale
-      DECIMAL<prec, scale>
+  # - info: *divide
+  #   <<: *BinaryDecimalNumericArgs
+  #   return: |-
+  #     init_scale = max(6, S1 + P2 + 1)
+  #     init_prec = P1 - S1 + P2 + init_scale
+  #     min_scale = min(init_scale, 6)
+  #     delta = init_prec - 38
+  #     prec = min(init_prec,38)
+  #     scale = init_prec > 38 ? scale - init_prec + 38 : min_scale
+  #     DECIMAL<prec, scale>
 
   - info: &modulus
       name: ["mod", "%"]
       description: "Modulus of two values."
     <<: *BinaryScalarNumericArgs
     return: K
-  - info: *modulus
-    <<: *BinaryDecimalNumericArgs
-    return: |-
-      init_scale = max(S1,S2)
-      init_prec = min(P1 - S1, P2 - S2) + init_scale
-      min_scale = min(init_scale, 6)
-      delta = init_prec - 38
-      prec = min(init_prec,38)
-      scale = init_prec > 38 ? scale - init_prec + 38 : min_scale
-      DECIMAL<prec, scale>
+  # - info: *modulus
+  #   <<: *BinaryDecimalNumericArgs
+  #   return: |-
+  #     init_scale = max(S1,S2)
+  #     init_prec = min(P1 - S1, P2 - S2) + init_scale
+  #     min_scale = min(init_scale, 6)
+  #     delta = init_prec - 38
+  #     prec = min(init_prec,38)
+  #     scale = init_prec > 38 ? scale - init_prec + 38 : min_scale
+  #     DECIMAL<prec, scale>
 
   - info:
       name: like
